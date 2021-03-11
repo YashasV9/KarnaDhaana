@@ -15,5 +15,6 @@ wireframe link:
 
 1. donor sign in page ::: https://wireframe.cc/vI0uVe
 
-Checking if we can commit from local
-confirming ur commit
+Checking if we can commit from local.
+
+Confirming ur commit
