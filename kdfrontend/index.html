@@ -38,6 +38,9 @@
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
 
+      // Initialize auth
+      const auth = firebase.auth();
+
       // Initialize firestore
       const db = firebase.firestore();
     </script>
