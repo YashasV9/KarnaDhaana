@@ -14,4 +14,6 @@ The donor would get the the list of NGO's localized wuth respect to the location
 wireframe link:
 
 1. donor sign in page ::: https://wireframe.cc/vI0uVe
-2. 
+
+/*additional changes include the building of the UI for the landing page i.e. home page that will be viewable to the users.
+Should be seen in a bit*/
