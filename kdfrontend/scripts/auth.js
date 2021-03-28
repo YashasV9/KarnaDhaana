@@ -2,6 +2,79 @@
 const signupForm = document.querySelector("#signup-form");
 const msg = document.querySelector(".userSignedUpMessage");
 const ngoSignupForm = document.querySelector("#signup-form-ngo");
+const hideElements = document.querySelectorAll(".logged-out");
+const displayElements = document.querySelectorAll(".logged-in");
+const userData = document.getElementById("user-data");
+
+function renderDonorUI(data) {
+  userData.textContent = "";
+  let userName = document.createElement("p");
+  userName.textContent = data.username;
+  let districtName = document.createElement("p");
+  districtName.textContent = data.district;
+  userData.appendChild(userName);
+  userData.appendChild(districtName);
+}
+
+function renderNgoUI(data) {
+  userData.textContent = "";
+  let ngoName = document.createElement("p");
+  ngoName.textContent = data.ngoName;
+  let district = document.createElement("p");
+  district.textContent = data.district;
+  let areaOfInterest = document.createElement("p");
+  areaOfInterest.textContent = `Area of Interest: ${data.area}`;
+  userData.appendChild(ngoName);
+  userData.appendChild(district);
+  userData.appendChild(areaOfInterest);
+}
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    console.log(user);
+    hideElements.forEach((item) => {
+      item.style.display = "none";
+    });
+    displayElements.forEach((item) => {
+      item.style.display = "block";
+    });
+    db.collection("donors")
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          renderDonorUI(doc.data());
+          console.log(doc.data());
+          console.log(doc.id);
+        } else {
+          console.log(doc.id);
+          console.log("User is an NGO");
+        }
+      });
+
+    db.collection("ngo")
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          renderNgoUI(doc.data());
+          console.log(doc.id);
+          console.log(doc.data());
+        } else {
+          console.log(doc.id);
+          console.log("User is a DONOR");
+        }
+      });
+  } else {
+    console.log("Logged Out");
+    hideElements.forEach((item) => {
+      item.style.display = "block";
+    });
+    displayElements.forEach((item) => {
+      item.style.display = "none";
+    });
+  }
+});
 
 ngoSignupForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -68,7 +141,6 @@ const logout = document.querySelector("#logout");
 logout.addEventListener("click", (e) => {
   e.preventDefault();
   auth.signOut().then(() => {
-    console.log("Signed Out");
     msg.innerHTML = `Signed Out`;
   });
 });
@@ -86,8 +158,6 @@ loginForm.addEventListener("submit", (e) => {
     .signInWithEmailAndPassword(email, password)
     .then((cred) => {
       // Close the Modal Login and Reset the Form
-      console.log(cred.user);
-      msg.innerHTML = `${cred.user.email} Signed In`;
       const modal = document.querySelector("#modal-login");
       M.Modal.getInstance(modal).close();
       loginForm.reset();
