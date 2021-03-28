@@ -1,6 +1,38 @@
 // SignUp
 const signupForm = document.querySelector("#signup-form");
 const msg = document.querySelector(".userSignedUpMessage");
+const ngoSignupForm = document.querySelector("#signup-form-ngo");
+
+ngoSignupForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const ngoEmail = ngoSignupForm["signup-email-ngo"].value;
+  const ngoPassword = ngoSignupForm["signup-password-ngo"].value;
+  const selectOption = document.querySelector("#area-of-work");
+  const areaOfInterest = selectOption.options[selectOption.selectedIndex].text;
+  auth
+    .createUserWithEmailAndPassword(ngoEmail, ngoPassword)
+    .then((cred) => {
+      return db.collection("ngo").doc(cred.user.uid).set({
+        uniqueId: ngoSignupForm["signup-id-ngo"].value,
+        district: ngoSignupForm["signup-district-ngo"].value,
+        ngoName: ngoSignupForm["signup-name-ngo"].value,
+        donor: false,
+        area: areaOfInterest,
+        donorList: {},
+      });
+    })
+    .then(() => {
+      const ngoModal = document.querySelector("#modal-signup-ngo");
+      M.Modal.getInstance(ngoModal).close();
+      ngoSignupForm.reset();
+      ngoSignupForm.querySelector(".error").innerHTML = "";
+      msg.textContent = "NGO Signed Up";
+    })
+    .catch((err) => {
+      ngoSignupForm.querySelector(".error").innerHTML = err.message;
+    });
+});
 
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();

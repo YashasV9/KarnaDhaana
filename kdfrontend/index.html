@@ -32,7 +32,7 @@
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">Donor Signup</span>
+              <span class="card-title">Donor</span>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
                 odit neque sint ut soluta quo, obcaecati fuga itaque nam laborum
@@ -57,7 +57,7 @@
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">NGO Signup</span>
+              <span class="card-title">NGO</span>
               <p>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. A
                 reiciendis pariatur aperiam eos mollitia, nostrum officia
@@ -67,7 +67,11 @@
             </div>
             <div class="card-action">
               <div class="center">
-                <a href="#" class="modal-trigger" data-target="modal-signup">
+                <a
+                  href="#"
+                  class="modal-trigger"
+                  data-target="modal-signup-ngo"
+                >
                   Sign up
                 </a>
                 <a href="#" class="modal-trigger" data-target="modal-login">
@@ -97,7 +101,7 @@
       </li>
     </ul>
 
-    <!-- Donor SIGN UP MODAL -->
+    <!-- Donor Signup Modal -->
     <div id="modal-signup" class="modal">
       <div class="modal-content">
         <h4>Sign up</h4>
@@ -117,6 +121,47 @@
           <div class="input-field">
             <input type="text" id="signup-district" required />
             <label for="signup-district">Your District</label>
+          </div>
+          <div class="center">
+            <button class="btn-large black darken-2 z-depth-0">Sign up</button>
+          </div>
+          <p class="error pink-text center-align"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- NGO Signup Modal -->
+    <div id="modal-signup-ngo" class="modal">
+      <div class="modal-content">
+        <h4>Sign up</h4>
+        <form id="signup-form-ngo">
+          <div class="input-field">
+            <input type="email" id="signup-email-ngo" required />
+            <label for="signup-email-ngo">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="signup-password-ngo" required />
+            <label for="signup-password-ngo">Choose password</label>
+          </div>
+          <div class="input-field">
+            <input type="text" id="signup-id-ngo" required />
+            <label for="signup-id-ngo">Unique Id of NGO</label>
+          </div>
+          <div class="input-field">
+            <input type="text" id="signup-name-ngo" required />
+            <label for="signup-name-ngo">NGO Name</label>
+          </div>
+          <div class="input-field">
+            <input type="text" id="signup-district-ngo" required />
+            <label for="signup-district-ngo">Your District</label>
+          </div>
+          <div class="input-field">
+            <select id="area-of-work">
+              <option value="" disabled selected>Area of Work</option>
+              <option value="1">Education</option>
+              <option value="2">Health</option>
+              <option value="3">Poverty</option>
+            </select>
           </div>
           <div class="center">
             <button class="btn-large black darken-2 z-depth-0">Sign up</button>
