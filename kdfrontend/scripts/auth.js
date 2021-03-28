@@ -12,12 +12,19 @@ signupForm.addEventListener("submit", (e) => {
   auth
     .createUserWithEmailAndPassword(email, password)
     .then((cred) => {
-      console.log(cred);
-      msg.innerHTML = `${cred.user.email} Signed Up`;
+      return db.collection("donors").doc(cred.user.uid).set({
+        username: signupForm["signup-name"].value,
+        district: signupForm["signup-district"].value,
+        donor: true,
+        ngoList: {},
+      });
+    })
+    .then(() => {
       const modal = document.querySelector("#modal-signup");
       M.Modal.getInstance(modal).close();
       signupForm.reset();
       signupForm.querySelector(".error").innerHTML = "";
+      msg.textContent = "SignedUp";
     })
     .catch((err) => {
       signupForm.querySelector(".error").innerHTML = err.message;
