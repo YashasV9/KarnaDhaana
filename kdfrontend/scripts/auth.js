@@ -1,33 +1,9 @@
 // SignUp
 const signupForm = document.querySelector("#signup-form");
-const msg = document.querySelector(".userSignedUpMessage");
 const ngoSignupForm = document.querySelector("#signup-form-ngo");
 const hideElements = document.querySelectorAll(".logged-out");
 const displayElements = document.querySelectorAll(".logged-in");
 const userData = document.getElementById("user-data");
-
-function renderDonorUI(data) {
-  userData.textContent = "";
-  let userName = document.createElement("p");
-  userName.textContent = data.username;
-  let districtName = document.createElement("p");
-  districtName.textContent = data.district;
-  userData.appendChild(userName);
-  userData.appendChild(districtName);
-}
-
-function renderNgoUI(data) {
-  userData.textContent = "";
-  let ngoName = document.createElement("p");
-  ngoName.textContent = data.ngoName;
-  let district = document.createElement("p");
-  district.textContent = data.district;
-  let areaOfInterest = document.createElement("p");
-  areaOfInterest.textContent = `Area of Interest: ${data.area}`;
-  userData.appendChild(ngoName);
-  userData.appendChild(district);
-  userData.appendChild(areaOfInterest);
-}
 
 auth.onAuthStateChanged((user) => {
   if (user) {
@@ -100,7 +76,6 @@ ngoSignupForm.addEventListener("submit", (e) => {
       M.Modal.getInstance(ngoModal).close();
       ngoSignupForm.reset();
       ngoSignupForm.querySelector(".error").innerHTML = "";
-      msg.textContent = "NGO Signed Up";
     })
     .catch((err) => {
       ngoSignupForm.querySelector(".error").innerHTML = err.message;
@@ -129,7 +104,6 @@ signupForm.addEventListener("submit", (e) => {
       M.Modal.getInstance(modal).close();
       signupForm.reset();
       signupForm.querySelector(".error").innerHTML = "";
-      msg.textContent = "SignedUp";
     })
     .catch((err) => {
       signupForm.querySelector(".error").innerHTML = err.message;
@@ -141,7 +115,7 @@ const logout = document.querySelector("#logout");
 logout.addEventListener("click", (e) => {
   e.preventDefault();
   auth.signOut().then(() => {
-    msg.innerHTML = `Signed Out`;
+    console.log("Logged Out");
   });
 });
 
