@@ -9,8 +9,8 @@ Goal Features
 
 People Associated with the Project:
 
-- [Shashank GS](https://github.com/GS-Shashank) - UI Lead
-- [Yashas](https://github.com/YashasV9) - Management Lead
+- [Shashank GS](https://github.com/GS-Shashank) - Operations and design Lead
+- [Yashas](https://github.com/YashasV9) - Project Lead
 - [Zaheer Abbas](https://github.com/nk4456542) - Technical Lead
 
 The project helps NGOs to get recognized in their localized region and creates a platform for them where interested Donors can donate and get to the work about the NGOs
